@@ -3,6 +3,12 @@ import { ItemContext } from "./App";
 export const ListItem = () => {
   const { item, value, setValue, setItem, id, setId } = useContext(ItemContext);
   //......... || DELETE HANDLER ||..........
+
+  // const deletehandler = (id, ind) => {
+  //   let newArr = [...item];
+  //   newArr.splice(ind, 1);
+  //   setItem(newArr);
+  // };
   const deletehandler = (id) => {
     let deleteData = item.filter((item) => {
       return item.id !== id;
@@ -38,7 +44,7 @@ export const ListItem = () => {
               >
                 Edit
               </button>
-              <button onClick={() => deletehandler(id)}>Delete</button>
+              <button onClick={() => deletehandler(id, ind)}>Delete</button>
             </div>
           );
         })}
