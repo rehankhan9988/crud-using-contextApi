@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import { ItemContext } from "./App";
 
 export const Item = () => {
-  const { value, setValue, item, setItem } = useContext(ItemContext);
+  const { value, setValue, item, setItem, id, setId } = useContext(ItemContext);
   //......... || SUBMIT HANDLER ||.........
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,16 +20,26 @@ export const Item = () => {
       setValue("");
     }
   };
+  const updateHandler = (id) => {
+    const updateData = item.map((item) => {
+      return item.id == id ? { value: value } : item;
+    });
+    setItem(updateData);
+    setId("");
+  };
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <input
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter item Name"
       />
-
-      <button type="submit">add</button>
+      {id ? (
+        <button onClick={() => updateHandler(id)}>update</button>
+      ) : (
+        <button onClick={handleSubmit}>add</button>
+      )}
     </form>
   );
 };

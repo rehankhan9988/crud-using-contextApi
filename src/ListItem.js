@@ -20,17 +20,9 @@ export const ListItem = () => {
     setValue(list);
     setId(id);
   };
-  const updateHandler = () => {
-    const updateData = item.map((item) => {
-      return item.id == id ? { value: value } : item;
-    });
-    setItem(updateData);
-    setValue("");
-  };
 
   return (
     <>
-      <button onClick={updateHandler}>update</button>
       <div>
         {item.map((list, ind) => {
           const { value, id } = list;
